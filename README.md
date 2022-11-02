@@ -45,14 +45,19 @@ const templateParams = {
   notes: 'Check this out!',
 };
 
-emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>', templateParams, '<YOUR_PUBLIC_KEY>').then(
-  (response) => {
-    console.log('SUCCESS!', response.status, response.text);
-  },
-  (err) => {
-    console.log('FAILED...', err);
-  },
-);
+emailjs
+  .send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>', templateParams, {
+    publicKey: '<YOUR_PUBLIC_KEY>',
+    privateKey: '<YOUR_PRIVATE_KEY>', // optional, highly recommended for security reasons
+  })
+  .then(
+    (response) => {
+      console.log('SUCCESS!', response.status, response.text);
+    },
+    (err) => {
+      console.log('FAILED...', err);
+    },
+  );
 ```
 
 **init (optional)**
@@ -61,7 +66,10 @@ emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>', templateParams, '<YOUR_P
 import emailjs from '@emailjs/nodejs';
 
 // set Public Key as global settings
-emailjs.init('<YOUR_PUBLIC_KEY>');
+emailjs.init({
+  publicKey: '<YOUR_PUBLIC_KEY>',
+  privateKey: '<YOUR_PRIVATE_KEY>', // optional, highly recommended for security reasons
+});
 
 emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>').then(
   (response) => {
@@ -79,7 +87,15 @@ emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>').then(
 import { send, EmailJSResponseStatus } from '@emailjs/nodejs';
 
 try {
-  await emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>', {}, '<YOUR_PUBLIC_KEY>');
+  await emailjs.send(
+    '<YOUR_SERVICE_ID>',
+    '<YOUR_TEMPLATE_ID>',
+    {},
+    {
+      publicKey: '<YOUR_PUBLIC_KEY>',
+      privateKey: '<YOUR_PRIVATE_KEY>', // optional, highly recommended for security reasons
+    },
+  );
   console.log('SUCCESS!');
 } catch (err) {
   if (err instanceof EmailJSResponseStatus) {
@@ -103,12 +119,17 @@ var templateParams = {
   notes: 'Check this out!',
 };
 
-emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>', templateParams).then(
-  function (response) {
-    console.log('SUCCESS!', response.status, response.text);
-  },
-  function (err) {
-    console.log('FAILED...', err);
-  },
-);
+emailjs
+  .send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>', templateParams, {
+    publicKey: '<YOUR_PUBLIC_KEY>',
+    privateKey: '<YOUR_PRIVATE_KEY>', // optional, highly recommended for security reasons
+  })
+  .then(
+    function (response) {
+      console.log('SUCCESS!', response.status, response.text);
+    },
+    function (err) {
+      console.log('FAILED...', err);
+    },
+  );
 ```
