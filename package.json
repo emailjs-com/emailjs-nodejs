@@ -19,6 +19,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": {
+      "import": "./mjs/emailjs.js",
+      "require": "./cjs/emailjs.js"
+    }
+  },
   "engines": {
     "node": ">=14.0.0"
   },

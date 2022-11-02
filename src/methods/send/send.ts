@@ -1,4 +1,5 @@
 import type { EmailJSResponseStatus } from '../../models/emailjs_response_status';
+import type { Options } from '../../types/Options';
 
 import { store } from '../../store/store';
 import { validateParams } from '../../utils/validate_params';
@@ -9,24 +10,26 @@ import { sendJSON } from '../../api/send_json';
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {object} templatePrams - the template params, what will be set to the EmailJS template
- * @param {string} publicKey - the EmailJS public key
+ * @param {Options} options - the EmailJS options
  * @returns {Promise<string>}
  */
 export const send = (
   serviceID: string,
   templateID: string,
   templatePrams?: Record<string, unknown>,
-  publicKey?: string,
+  options?: Options,
 ): Promise<EmailJSResponseStatus> => {
-  const pubKey = publicKey || store._userID;
+  const pubKey = options?.publicKey || store._publicKey;
+  const prKey = options?.privateKey || store._privateKey;
 
   validateParams(pubKey, serviceID, templateID);
 
   const params = {
     lib_version: process.env.npm_package_version,
-    user_id: pubKey,
     service_id: serviceID,
     template_id: templateID,
+    user_id: prKey,
+    accessToken: options?.privateKey,
     template_params: templatePrams,
   };
 

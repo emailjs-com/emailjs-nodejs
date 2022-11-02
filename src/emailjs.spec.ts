@@ -28,13 +28,17 @@ describe('required params validator', () => {
   });
 
   it('should send method and fail on the service ID', () => {
-    emailjs.init('user_LC2JWGTestKeySomething');
+    emailjs.init({
+      publicKey: 'LC2JWGTestKeySomething',
+    });
 
     expect(() => emailjs.send('', 'my_test_template')).toThrow('The service ID is required');
   });
 
   it('should send method and fail on the template ID', () => {
-    emailjs.init('user_LC2JWGTestKeySomething');
+    emailjs.init({
+      publicKey: 'LC2JWGTestKeySomething',
+    });
 
     expect(() => emailjs.send('default_service', '')).toThrow('The template ID is required');
   });
@@ -42,7 +46,10 @@ describe('required params validator', () => {
 
 describe('emailjs.send method', () => {
   it('should init and send method successfully', async () => {
-    emailjs.init('user_LC2JWGTestKeySomething');
+    emailjs.init({
+      publicKey: 'LC2JWGTestKeySomething',
+      privateKey: 'PrKeyTestKeySomething',
+    });
 
     try {
       const result = await emailjs.send('default_service', 'my_test_template');
@@ -58,7 +65,10 @@ describe('emailjs.send method', () => {
         'default_service',
         'my_test_template',
         {},
-        'user_LC2JWGTestKeySomething',
+        {
+          publicKey: 'LC2JWGTestKeySomething',
+          privateKey: 'PrKeyTestKeySomething',
+        },
       );
       expect(result).toEqual({ status: 200, text: 'OK' });
     } catch (error) {
@@ -80,7 +90,10 @@ describe('emailjs.send method', () => {
         'default_service',
         'my_test_template',
         {},
-        'user_LC2JWGTestKeySomething',
+        {
+          publicKey: 'LC2JWGTestKeySomething',
+          privateKey: 'PrKeyTestKeySomething',
+        },
       );
       expect(result).toBeUndefined();
     } catch (error) {

@@ -1,12 +1,17 @@
 import { store } from '../../store/store';
+import type { Options } from '../../types/Options';
+
+interface InitOptions extends Options {
+  host?: string;
+}
 
 /**
  * Initiation
- * @param {string} publicKey - set the EmailJS public key
- * @param {string} origin - set the EmailJS origin
+ * @param {InitOptions} options - set emailjs options
  */
 
-export const init = (publicKey: string, origin = 'api.emailjs.com'): void => {
-  store._userID = publicKey;
-  store._origin = origin;
+export const init = (options: InitOptions): void => {
+  store._publicKey = options.publicKey;
+  store._privateKey = options.privateKey;
+  store._host = options.host || 'api.emailjs.com';
 };

@@ -1,9 +1,10 @@
 interface Store {
-  _userID: string;
-  _origin: string;
+  _publicKey: string;
+  _host: string;
+  _privateKey?: string;
 }
 
 export const store: Store = {
-  _userID: '',
-  _origin: 'api.emailjs.com',
+  _publicKey: '',
+  _host: 'api.emailjs.com',
 };
