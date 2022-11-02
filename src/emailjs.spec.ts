@@ -1,5 +1,5 @@
 import { type RequestOptions, request } from 'https';
-import emailjs, { send, init, EmailJSResponseStatus } from './emailjs';
+import emailjs, { send, init, EmailJSResponseStatus } from './emailjs.js';
 
 jest.mock('https', () => ({
   ...jest.requireActual('https'),

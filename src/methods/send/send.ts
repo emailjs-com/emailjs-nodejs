@@ -1,9 +1,9 @@
-import type { EmailJSResponseStatus } from '../../models/emailjs_response_status';
-import type { Options } from '../../types/Options';
+import type { EmailJSResponseStatus } from '../../models/emailjs_response_status.js';
+import type { Options } from '../../types/Options.js';
 
-import { store } from '../../store/store';
-import { validateParams } from '../../utils/validate_params';
-import { sendJSON } from '../../api/send_json';
+import { store } from '../../store/store.js';
+import { validateParams } from '../../utils/validate_params.js';
+import { sendJSON } from '../../api/send_json.js';
 
 /**
  * Send a template to the specific EmailJS service

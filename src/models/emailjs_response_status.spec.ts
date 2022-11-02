@@ -1,4 +1,4 @@
-import { EmailJSResponseStatus } from './emailjs_response_status';
+import { EmailJSResponseStatus } from './emailjs_response_status.js';
 
 it('should handle the success response', () => {
   const error = new EmailJSResponseStatus(200, 'OK');

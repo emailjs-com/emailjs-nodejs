@@ -1,7 +1,7 @@
-import { store } from '../../store/store';
-import type { Options } from '../../types/Options';
+import type { Options } from '../../types/Options.js';
+import { store } from '../../store/store.js';
 
-interface InitOptions extends Options {
+export interface InitOptions extends Options {
   host?: string;
 }
 
