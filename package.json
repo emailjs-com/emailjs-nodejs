@@ -31,9 +31,11 @@
   "scripts": {
     "_clean": "rm -rf mjs && rm -rf cjs",
     "_set-version": "./set-version.sh $npm_package_version",
-    "_build-mjs": "tsc --declaration && npm run _set-version mjs",
-    "_build-cjs": "tsc --target ES2019 --module CommonJS --outDir cjs && npm run _set-version cjs",
-    "build": "npm run _clean && npm run _build-mjs && npm run _build-cjs",
+    "_set-type:cjs": "./set-type.sh cjs commonjs",
+    "_set-type:mjs": "./set-type.sh mjs module",
+    "_build:mjs": "tsc --declaration && npm run _set-version mjs && npm run _set-type:mjs",
+    "_build:cjs": "tsc --target ES2019 --module CommonJS --outDir cjs && npm run _set-version cjs && npm run _set-type:cjs",
+    "build": "npm run _clean && npm run _build:mjs && npm run _build:cjs",
     "test": "jest --coverage",
     "lint": "tsc --noEmit && eslint src"
   },

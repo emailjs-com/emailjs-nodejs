@@ -16,6 +16,7 @@ Thumbs.db
 .npmignore
 jest.config.ts
 set-version.sh
+set-type.sh
 tsconfig.json
 
 # source code files
