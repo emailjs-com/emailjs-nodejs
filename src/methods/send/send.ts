@@ -28,8 +28,8 @@ export const send = (
     lib_version: process.env.npm_package_version,
     service_id: serviceID,
     template_id: templateID,
-    user_id: prKey,
-    accessToken: options?.privateKey,
+    user_id: pubKey,
+    accessToken: prKey,
     template_params: templatePrams,
   };
 
