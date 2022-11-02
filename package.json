@@ -1,6 +1,6 @@
 {
   "name": "@emailjs/nodejs",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "EmailJS helps to send emails directly from your code. Official EmailJS SDK for NodeJS",
   "private": false,
   "author": "EmailJS",
