@@ -1,0 +1,67 @@
+{
+  "name": "@emailjs/nodejs",
+  "version": "0.0.1",
+  "description": "EmailJS helps to send emails directly from your code. Official EmailJS SDK for NodeJS",
+  "private": false,
+  "author": "EmailJS",
+  "contributors": [
+    "Sergey Khomushin <sergey@emailjs.com> (https://www.emailjs.com)"
+  ],
+  "homepage": "https://www.emailjs.com",
+  "license": "BSD-3-Clause",
+  "main": "cjs/emailjs.js",
+  "types": "mjs/emailjs.d.ts",
+  "module": "mjs/emailjs.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emailjs-com/emailjs-nodejs.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "_clean": "rm -rf mjs && rm -rf cjs",
+    "_set-version": "./set-version.sh $npm_package_version",
+    "_build-mjs": "tsc --declaration && npm run _set-version mjs",
+    "_build-cjs": "tsc --target ES2019 --module CommonJS --outDir cjs && npm run _set-version cjs",
+    "build": "npm run _clean && npm run _build-mjs && npm run _build-cjs",
+    "test": "jest --coverage",
+    "lint": "tsc --noEmit && eslint src"
+  },
+  "keywords": [
+    "js email",
+    "nodejs email",
+    "ts email",
+    "javascript email",
+    "typescript email",
+    "nodejs emailjs",
+    "emailjs",
+    "email templates",
+    "send email",
+    "send email from js",
+    "send email from server",
+    "emailjs-com"
+  ],
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^29.2.2",
+    "prettier": "^2.7.1",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100
+  }
+}
