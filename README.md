@@ -10,7 +10,9 @@ Use you EmailJS account for sending emails.
 ## Disclaimer
 
 This is a NodeJS-only version, otherwise use
-the [REST API](https://www.emailjs.com/docs/rest-api/send/).
+- [Browser SDK](https://www.npmjs.com/package/@emailjs/browser)
+- [Flutter SDK](https://pub.dev/packages/emailjs)
+- [REST API](https://www.emailjs.com/docs/rest-api/send/)
 
 ## Links
 
@@ -30,6 +32,15 @@ Install EmailJS SDK using [npm](https://www.npmjs.com/):
 ```bash
 $ npm install @emailjs/nodejs
 ```
+
+***Note***: By default, API requests are disabled for non-browser applications.
+You need to activate them through [Account:Security](https://dashboard.emailjs.com/admin/account/security).
+
+## FAQ
+
+#### API calls are disabled for non-browser applications
+You need to activate API requests
+through [Account:Security](https://dashboard.emailjs.com/admin/account/security).
 
 ## Examples
 
