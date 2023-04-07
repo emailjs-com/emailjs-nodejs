@@ -95,7 +95,7 @@ emailjs.send('<YOUR_SERVICE_ID>', '<YOUR_TEMPLATE_ID>').then(
 **await/async with EmailJS error handler**
 
 ```js
-import { send, EmailJSResponseStatus } from '@emailjs/nodejs';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/nodejs';
 
 try {
   await emailjs.send(
