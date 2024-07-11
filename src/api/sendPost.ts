@@ -1,9 +1,9 @@
 import { request, type RequestOptions } from 'https';
 
-import { store } from '../store/store.js';
-import { EmailJSResponseStatus } from '../models/emailjs_response_status.js';
+import { store } from '../store/store';
+import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus';
 
-export const sendJSON = (params: string): Promise<EmailJSResponseStatus> => {
+export const sendPost = (data: string): Promise<EmailJSResponseStatus> => {
   const options: RequestOptions = {
     host: store._host,
     path: '/api/v1.0/email/send',
@@ -21,12 +21,13 @@ export const sendJSON = (params: string): Promise<EmailJSResponseStatus> => {
       res.on('data', (chunk: Uint8Array) => chunks.push(chunk));
 
       res.on('end', () => {
-        const data = Buffer.concat(chunks).toString();
+        const message = Buffer.concat(chunks).toString();
+        const responseStatus = new EmailJSResponseStatus(res.statusCode, message);
 
         if (res.statusCode === 200) {
-          resolve(new EmailJSResponseStatus(res.statusCode, data));
+          resolve(responseStatus);
         } else {
-          reject(new EmailJSResponseStatus(res.statusCode, data));
+          reject(responseStatus);
         }
       });
 
@@ -39,8 +40,8 @@ export const sendJSON = (params: string): Promise<EmailJSResponseStatus> => {
       reject(error);
     });
 
-    if (params) {
-      req.write(params);
+    if (data) {
+      req.write(data);
     }
 
     req.end();
