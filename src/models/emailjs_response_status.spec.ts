@@ -1,3 +1,4 @@
+import { it, expect } from '@jest/globals';
 import { EmailJSResponseStatus } from './emailjs_response_status.js';
 
 it('should handle the success response', () => {

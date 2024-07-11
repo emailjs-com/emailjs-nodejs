@@ -1,8 +1,9 @@
+import { it, expect, describe, jest } from '@jest/globals';
 import { type RequestOptions, request } from 'https';
 import emailjs, { send, init, EmailJSResponseStatus } from './emailjs.js';
 
 jest.mock('https', () => ({
-  ...jest.requireActual('https'),
+  ...jest.requireActual<typeof import('https')>('https'),
   request: jest.fn((_: RequestOptions, cb: (res: any) => void) =>
     cb({
       on: (_: string, cb: (chunk: any) => void) => cb(Buffer.from('OK', 'utf8')),
@@ -77,7 +78,7 @@ describe('emailjs.send method', () => {
   });
 
   it('should send method and fail', async () => {
-    (request as jest.Mock).mockImplementationOnce((_: RequestOptions, cb: (res: any) => void) =>
+    (request as jest.Mock<any>).mockImplementationOnce((_: RequestOptions, cb: (res: any) => void) =>
       cb({
         on: (_: string, cb: (chunk: any) => void) =>
           cb(Buffer.from('The Public Key is required', 'utf8')),

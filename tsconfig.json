@@ -22,5 +22,4 @@
     "outDir": "mjs"
   },
   "include": ["src"],
-  "exclude": ["src/**/*.spec.ts"]
 }
