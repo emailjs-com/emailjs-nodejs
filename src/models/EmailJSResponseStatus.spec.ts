@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import { EmailJSResponseStatus } from './emailjs_response_status.js';
+import { EmailJSResponseStatus } from './EmailJSResponseStatus';
 
 it('should handle the success response', () => {
   const error = new EmailJSResponseStatus(200, 'OK');
