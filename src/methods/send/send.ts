@@ -1,37 +1,54 @@
-import type { EmailJSResponseStatus } from '../../models/emailjs_response_status.js';
-import type { Options } from '../../types/Options.js';
+import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
+import type { Options } from '../../types/Options';
 
-import { store } from '../../store/store.js';
-import { validateParams } from '../../utils/validate_params.js';
-import { sendJSON } from '../../api/send_json.js';
+import { store } from '../../store/store';
+import { sendPost } from '../../api/sendPost';
+import { validateParams } from '../../utils/validateParams/validateParams';
+import { validateTemplateParams } from '../../utils/validateTemplateParams/validateTemplateParams';
+import { isBlockedValueInParams } from '../../utils/isBlockedValueInParams/isBlockedValueInParams';
+import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
+import { isLimitRateHit } from '../../utils/isLimitRateHit/isLimitRateHit';
+import { limitRateError } from '../../errors/limitRateError/limitRateError';
 
 /**
  * Send a template to the specific EmailJS service
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
- * @param {object} templatePrams - the template params, what will be set to the EmailJS template
- * @param {Options} options - the EmailJS options
- * @returns {Promise<string>}
+ * @param {object} templateParams - the template params, what will be set to the EmailJS template
+ * @param {object} options - the EmailJS SDK config options
+ * @returns {Promise<EmailJSResponseStatus>}
  */
-export const send = (
+export const send = async (
   serviceID: string,
   templateID: string,
-  templatePrams?: Record<string, unknown>,
+  templateParams?: Record<string, unknown>,
   options?: Options,
 ): Promise<EmailJSResponseStatus> => {
-  const pubKey = options?.publicKey || store._publicKey;
-  const prKey = options?.privateKey || store._privateKey;
+  const publicKey = options?.publicKey || store.publicKey;
+  const privateKey = options?.privateKey || store.privateKey;
+  const storageProvider = store.storageProvider || options?.storageProvider;
+  const blockList = { ...store.blockList, ...options?.blockList };
+  const limitRate = { ...store.limitRate, ...options?.limitRate };
 
-  validateParams(pubKey, serviceID, templateID);
+  validateParams(publicKey, serviceID, templateID);
+  validateTemplateParams(templateParams);
+
+  if (templateParams && isBlockedValueInParams(blockList, templateParams)) {
+    return Promise.reject(blockedEmailError());
+  }
+
+  if (await isLimitRateHit(limitRate, storageProvider)) {
+    return Promise.reject(limitRateError());
+  }
 
   const params = {
     lib_version: process.env.npm_package_version,
+    user_id: publicKey,
+    accessToken: privateKey,
     service_id: serviceID,
     template_id: templateID,
-    user_id: pubKey,
-    accessToken: prKey,
-    template_params: templatePrams,
+    template_params: templateParams,
   };
 
-  return sendJSON(JSON.stringify(params));
+  return sendPost(JSON.stringify(params));
 };

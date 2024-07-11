@@ -1,17 +1,18 @@
-import type { Options } from '../../types/Options.js';
-import { store } from '../../store/store.js';
-
-export interface InitOptions extends Options {
-  host?: string;
-}
+import { store } from '../../store/store';
+import type { Options } from '../../types/Options';
 
 /**
- * Initiation
- * @param {InitOptions} options - set emailjs options
+ * EmailJS global SDK config
+ * @param {object} options - the EmailJS global SDK config options
+ * @param {string} origin - the non-default EmailJS origin
  */
+export const init = (options: Options, origin: string = 'api.emailjs.com'): void => {
+  if (!options) return;
 
-export const init = (options: InitOptions): void => {
-  store._publicKey = options.publicKey;
-  store._privateKey = options.privateKey;
-  store._host = options.host || 'api.emailjs.com';
+  store.publicKey = options.publicKey;
+  store.privateKey = options.privateKey;
+  store.storageProvider = options.storageProvider;
+  store.blockList = options.blockList;
+  store.limitRate = options.limitRate;
+  store.origin = options.origin || origin;
 };

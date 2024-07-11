@@ -1,7 +1,7 @@
 {
   "name": "@emailjs/nodejs",
   "version": "2.2.0",
-  "description": "EmailJS helps to send emails directly from your code. Official EmailJS SDK for NodeJS",
+  "description": "Official EmailJS SDK for NodeJS",
   "private": false,
   "author": "EmailJS",
   "contributors": [
@@ -9,9 +9,9 @@
   ],
   "homepage": "https://www.emailjs.com",
   "license": "BSD-3-Clause",
-  "main": "cjs/emailjs.js",
-  "types": "mjs/emailjs.d.ts",
-  "module": "mjs/emailjs.js",
+  "main": "cjs/index.js",
+  "types": "es/index.d.ts",
+  "module": "es/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/emailjs-com/emailjs-nodejs.git"
@@ -21,8 +21,8 @@
   },
   "exports": {
     ".": {
-      "import": "./mjs/emailjs.js",
-      "require": "./cjs/emailjs.js"
+      "import": "./mjs/index.js",
+      "require": "./cjs/index.js"
     }
   },
   "engines": {

@@ -1,10 +1,7 @@
-interface Store {
-  _publicKey: string;
-  _host: string;
-  _privateKey?: string;
-}
+import type { Options } from '../types/Options';
+import { createMemoryStorage } from '../utils/createMemoryStorage/createMemoryStorage';
 
-export const store: Store = {
-  _publicKey: '',
-  _host: 'api.emailjs.com',
+export const store: Options = {
+  origin: 'api.emailjs.com',
+  storageProvider: createMemoryStorage(),
 };
