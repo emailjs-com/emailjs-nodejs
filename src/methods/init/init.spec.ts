@@ -4,13 +4,13 @@ import { init } from './init';
 import { store } from '../../store/store';
 
 beforeEach(() => {
-  store.origin = 'https://api.emailjs.com';
+  store.origin = 'api.emailjs.com';
   store.publicKey = undefined;
   store.storageProvider = undefined;
 });
 
 it('should call the init method with empty options and get default values', () => {
-  init({});
+  init(undefined as any);
 
   expect(store).toEqual({
     origin: 'api.emailjs.com',

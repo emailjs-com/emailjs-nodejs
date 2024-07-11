@@ -65,9 +65,8 @@ describe('limit rate is disabled', () => {
 });
 
 describe('limit rate is enabled', () => {
-  it('hit limit', async () => {
+  it('hit limit with default ID', async () => {
     const limitRate: LimitRate = {
-      id: 'app',
       throttle: 100,
     };
 
