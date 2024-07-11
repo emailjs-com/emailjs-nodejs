@@ -5,7 +5,7 @@ import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus';
 
 export const sendPost = (data: string): Promise<EmailJSResponseStatus> => {
   const options: RequestOptions = {
-    host: store._host,
+    host: store.origin,
     path: '/api/v1.0/email/send',
     port: 443,
     method: 'POST',
