@@ -26,7 +26,7 @@ export const send = async (
 ): Promise<EmailJSResponseStatus> => {
   const publicKey = options?.publicKey || store.publicKey;
   const privateKey = options?.privateKey || store.privateKey;
-  const storageProvider = store.storageProvider || options?.storageProvider;
+  const storageProvider = options?.storageProvider || store.storageProvider;
   const blockList = { ...store.blockList, ...options?.blockList };
   const limitRate = { ...store.limitRate, ...options?.limitRate };
 
