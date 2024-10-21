@@ -37,7 +37,7 @@
     "_build:mjs": "tsc --declaration --project ./tsconfig.build.json && npm run _set-version mjs && npm run _set-type:mjs",
     "_build:cjs": "tsc --target ES2019 --module CommonJS --moduleResolution Node --outDir cjs --project ./tsconfig.build.json && npm run _set-version cjs && npm run _set-type:cjs",
     "build": "npm run _clean && npm run _build:mjs && npm run _build:cjs",
-    "publish": "npm run build && npm publish",
+    "release": "npm run build && npm publish",
     "test": "jest --coverage",
     "lint": "tsc --noEmit && eslint src"
   },
