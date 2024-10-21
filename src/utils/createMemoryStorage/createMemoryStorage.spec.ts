@@ -1,6 +1,6 @@
 import { it, expect, beforeAll } from '@jest/globals';
-import { createMemoryStorage } from './createMemoryStorage';
-import type { StorageProvider } from '../../types/StorageProvider';
+import { createMemoryStorage } from './createMemoryStorage.js';
+import type { StorageProvider } from '../../types/StorageProvider.js';
 
 let storage: StorageProvider;
 

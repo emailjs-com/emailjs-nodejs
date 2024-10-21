@@ -1,8 +1,8 @@
 import { it, describe, expect, beforeEach } from '@jest/globals';
-import type { LimitRate } from '../../types/LimitRate';
-import type { StorageProvider } from '../../types/StorageProvider';
-import { isLimitRateHit } from './isLimitRateHit';
-import { createMemoryStorage } from '../createMemoryStorage/createMemoryStorage';
+import type { LimitRate } from '../../types/LimitRate.js';
+import type { StorageProvider } from '../../types/StorageProvider.js';
+import { isLimitRateHit } from './isLimitRateHit.js';
+import { createMemoryStorage } from '../createMemoryStorage/createMemoryStorage.js';
 
 let storage: StorageProvider;
 

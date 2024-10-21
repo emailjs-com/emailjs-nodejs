@@ -1,8 +1,8 @@
 import { it, expect, jest } from '@jest/globals';
-
-import { send } from './send';
 import { request, type RequestOptions } from 'https';
-import emailjs from '../../index';
+
+import { send } from './send.js';
+import emailjs from '../../index.js';
 
 jest.mock('https', () => ({
   ...jest.requireActual<typeof import('https')>('https'),
