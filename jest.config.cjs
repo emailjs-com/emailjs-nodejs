@@ -1,15 +1,16 @@
-import type { Config } from '@jest/types';
-
-const config: Config.InitialOptions = {
+const config = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   transform: {
-    '^.+\\.ts?$': ['ts-jest', {
-      useESM: true,
-      diagnostics: {
-        warnOnly: true,
+    '^.+\\.ts?$': [
+      'ts-jest',
+      {
+        useESM: true,
+        diagnostics: {
+          warnOnly: true,
+        },
       },
-    }],
+    ],
   },
   testRegex: '((\\.|/)(spec))\\.(ts?)$',
   moduleFileExtensions: ['ts', 'js'],
@@ -17,7 +18,6 @@ const config: Config.InitialOptions = {
   modulePaths: ['src'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^#app/(.*)\\.js$': '$1',
   },
   testPathIgnorePatterns: ['/node_modules/'],
   testEnvironment: 'node',
