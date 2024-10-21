@@ -7,6 +7,7 @@
   "contributors": [
     "Sergey Khomushin <sergey@emailjs.com> (https://www.emailjs.com)"
   ],
+  "type": "module",
   "homepage": "https://www.emailjs.com",
   "license": "BSD-3-Clause",
   "main": "cjs/index.js",
@@ -34,7 +35,7 @@
     "_set-type:cjs": "./set-type.sh cjs commonjs",
     "_set-type:mjs": "./set-type.sh mjs module",
     "_build:mjs": "tsc --declaration --project ./tsconfig.build.json && npm run _set-version mjs && npm run _set-type:mjs",
-    "_build:cjs": "tsc --target ES2019 --module CommonJS --outDir cjs --project ./tsconfig.build.json && npm run _set-version cjs && npm run _set-type:cjs",
+    "_build:cjs": "tsc --target ES2019 --module CommonJS --moduleResolution Node --outDir cjs --project ./tsconfig.build.json && npm run _set-version cjs && npm run _set-type:cjs",
     "build": "npm run _clean && npm run _build:mjs && npm run _build:cjs",
     "publish": "npm run build && npm publish",
     "test": "jest --coverage",

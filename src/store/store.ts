@@ -1,5 +1,5 @@
-import type { Options } from '../types/Options';
-import { createMemoryStorage } from '../utils/createMemoryStorage/createMemoryStorage';
+import type { Options } from '../types/Options.js';
+import { createMemoryStorage } from '../utils/createMemoryStorage/createMemoryStorage.js';
 
 export const store: Options = {
   origin: 'api.emailjs.com',

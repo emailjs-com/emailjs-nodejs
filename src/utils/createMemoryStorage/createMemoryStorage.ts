@@ -1,4 +1,4 @@
-import type { StorageProvider } from '../../types/StorageProvider';
+import type { StorageProvider } from '../../types/StorageProvider.js';
 
 class MemoryStorage {
   private store: Record<string, number> = {};

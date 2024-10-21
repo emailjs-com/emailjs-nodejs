@@ -1,7 +1,7 @@
 import { request, type RequestOptions } from 'https';
 
-import { store } from '../store/store';
-import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus';
+import { store } from '../store/store.js';
+import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus.js';
 
 export const sendPost = (data: string): Promise<EmailJSResponseStatus> => {
   const options: RequestOptions = {

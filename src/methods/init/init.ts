@@ -1,5 +1,5 @@
-import { store } from '../../store/store';
-import type { Options } from '../../types/Options';
+import { store } from '../../store/store.js';
+import type { Options } from '../../types/Options.js';
 
 /**
  * EmailJS global SDK config
