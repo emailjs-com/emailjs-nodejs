@@ -18,6 +18,7 @@ jest.config.ts
 set-version.sh
 set-type.sh
 tsconfig.json
+tsconfig.build.json
 
 # source code files
 src/
