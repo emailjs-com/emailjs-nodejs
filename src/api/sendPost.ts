@@ -1,4 +1,4 @@
-import { request, type RequestOptions } from 'https';
+import { request, type RequestOptions } from 'node:https';
 
 import { store } from '../store/store.js';
 import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus.js';
