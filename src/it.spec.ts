@@ -1,9 +1,9 @@
 import { it, expect, describe, jest } from '@jest/globals';
-import { type RequestOptions } from 'https';
+import { type RequestOptions } from 'node:https';
 import emailjs, { send, init, EmailJSResponseStatus } from './index.js';
 
-jest.mock('https', () => ({
-  ...jest.requireActual<typeof import('https')>('https'),
+jest.mock('node:https', () => ({
+  ...jest.requireActual<typeof import('node:https')>('node:https'),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   request: jest.fn((_: RequestOptions, cb: (res: any) => void) =>
     cb({
