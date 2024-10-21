@@ -4,8 +4,10 @@ import emailjs, { send, init, EmailJSResponseStatus } from './index.js';
 
 jest.mock('https', () => ({
   ...jest.requireActual<typeof import('https')>('https'),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   request: jest.fn((_: RequestOptions, cb: (res: any) => void) =>
     cb({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on: (_: string, cb: (chunk: any) => void) => cb(Buffer.from('OK', 'utf8')),
       statusCode: 200,
     }),

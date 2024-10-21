@@ -56,17 +56,15 @@
     "emailjs-com"
   ],
   "devDependencies": {
-    "@types/node": "^22.7.4",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
-    "eslint-import-resolver-typescript": "^3.6.3",
-    "eslint-plugin-import": "^2.30.0",
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^22.7.7",
+    "eslint": "^9.13.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.10.0"
   },
   "prettier": {
     "trailingComma": "all",

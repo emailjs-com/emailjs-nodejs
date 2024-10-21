@@ -6,8 +6,10 @@ import emailjs from '../../index.js';
 
 jest.mock('https', () => ({
   ...jest.requireActual<typeof import('https')>('https'),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   request: jest.fn((_: RequestOptions, cb: (res: any) => void) =>
     cb({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on: (_: string, cb: (chunk: any) => void) => cb(Buffer.from('OK', 'utf8')),
       statusCode: 200,
     }),
@@ -194,8 +196,10 @@ it('should call the send method as promise', () => {
 });
 
 it('should send method and fail', async () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (request as jest.Mock<any>).mockImplementationOnce((_: RequestOptions, cb: (res: any) => void) =>
     cb({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       on: (_: string, cb: (chunk: any) => void) =>
         cb(Buffer.from('The Public Key is required', 'utf8')),
       statusCode: 403,

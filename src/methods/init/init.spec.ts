@@ -10,6 +10,7 @@ beforeEach(() => {
 });
 
 it('should call the init method with empty options and get default values', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
   init(undefined as any);
 
   expect(store).toEqual({
